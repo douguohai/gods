@@ -13,8 +13,8 @@ package linkedhashmap
 
 import (
 	"fmt"
-	"github.com/emirpasic/gods/lists/doublylinkedlist"
-	"github.com/emirpasic/gods/maps"
+	"github.com/douguohai/gods/lists/doublylinkedlist"
+	"github.com/douguohai/gods/maps"
 	"strings"
 )
 

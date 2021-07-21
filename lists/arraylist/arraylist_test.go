@@ -6,7 +6,7 @@ package arraylist
 
 import (
 	"fmt"
-	"github.com/emirpasic/gods/utils"
+	"github.com/douguohai/gods/utils"
 	"testing"
 )
 
