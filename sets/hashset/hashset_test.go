@@ -5,11 +5,17 @@
 package hashset
 
 import (
+	"encoding/json"
+	"fmt"
 	"testing"
 )
 
 func TestSetNew(t *testing.T) {
 	set := New(2, 1)
+	a, _ := json.Marshal(set)
+	fmt.Sprint("1111", string(a))
+	json.Unmarshal(a, set)
+	fmt.Sprint("222", set)
 
 	if actualValue := set.Size(); actualValue != 2 {
 		t.Errorf("Got %v expected %v", actualValue, 2)

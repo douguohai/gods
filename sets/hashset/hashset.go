@@ -10,6 +10,7 @@
 package hashset
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/douguohai/gods/sets"
 	"strings"
@@ -94,4 +95,20 @@ func (set *Set) String() string {
 	}
 	str += strings.Join(items, ", ")
 	return str
+}
+
+func (set *Set) MarshalJSON() ([]byte, error) {
+	return json.Marshal(set.Values())
+}
+
+func (set *Set) UnmarshalJSON(data []byte) error {
+	values := make([]interface{}, 10)
+	if err := json.Unmarshal(data, &values); err != nil {
+		return err
+	}
+	set.Clear()
+	for _, val := range values {
+		set.Add(val)
+	}
+	return nil
 }
