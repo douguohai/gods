@@ -21,14 +21,12 @@ func assertSetImplementation() {
 
 // Set holds elements in go's native map
 type Set struct {
-	items map[interface{}]struct{}
+	items map[interface{}]interface{}
 }
-
-var itemExists = struct{}{}
 
 // New instantiates a new empty set and adds the passed values, if any, to the set
 func New(values ...interface{}) *Set {
-	set := &Set{items: make(map[interface{}]struct{})}
+	set := &Set{items: make(map[interface{}]interface{})}
 	if len(values) > 0 {
 		set.Add(values...)
 	}
@@ -38,7 +36,7 @@ func New(values ...interface{}) *Set {
 // Add adds the items (one or more) to the set.
 func (set *Set) Add(items ...interface{}) {
 	for _, item := range items {
-		set.items[item] = itemExists
+		set.items[item] = item
 	}
 }
 
@@ -73,14 +71,14 @@ func (set *Set) Size() int {
 
 // Clear clears all values in the set.
 func (set *Set) Clear() {
-	set.items = make(map[interface{}]struct{})
+	set.items = make(map[interface{}]interface{})
 }
 
 // Values returns all items in the set.
 func (set *Set) Values() []interface{} {
 	values := make([]interface{}, set.Size())
 	count := 0
-	for item := range set.items {
+	for _, item := range set.items {
 		values[count] = item
 		count++
 	}
